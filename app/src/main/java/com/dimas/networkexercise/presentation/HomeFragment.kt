@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dimas.networkexercise.base.AppModule
@@ -80,8 +81,11 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun showLoader(loading: Boolean) {
-
+    private fun showLoader(isLoading: Boolean) {
+        binding?.apply {
+            pbHome.isVisible = isLoading
+            listMovie.isVisible = !isLoading
+        }
     }
 
     private fun showListMovie(data: List<Movie>) {

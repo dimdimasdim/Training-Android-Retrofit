@@ -20,6 +20,7 @@ class SplashActivity : AppCompatActivity() {
             delay(2000)
             val i = Intent(this@SplashActivity, LoginActivity::class.java)
             startActivity(i)
+            finish()
         }
     }
 }

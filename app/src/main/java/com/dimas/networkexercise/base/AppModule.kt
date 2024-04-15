@@ -19,10 +19,11 @@ import java.util.concurrent.TimeUnit
 
 object AppModule {
 
-    private fun provideOkHttpClient(): OkHttpClient =  OkHttpClient.Builder().apply {
+    private fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder().apply {
         connectTimeout(15, TimeUnit.SECONDS)
         readTimeout(15, TimeUnit.SECONDS)
         writeTimeout(30, TimeUnit.SECONDS)
+        certificatePinner(SSLPinning.getPinnedCertificate())
         addInterceptor(MockInterceptor())
         addInterceptor(ChuckerInterceptor(ApplicationProviderUtils.get()))
         addInterceptor(HeaderInterceptor(DataStoreUtils.get()))
