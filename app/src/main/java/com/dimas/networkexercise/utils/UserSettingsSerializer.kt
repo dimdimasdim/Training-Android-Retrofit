@@ -13,23 +13,11 @@ class UserSettingsSerializer() : Serializer<User> {
     override val defaultValue: User get() = User()
 
     override suspend fun readFrom(input: InputStream): User {
-        return try {
-            Json.decodeFromString(
-                deserializer = User.serializer(),
-                string = input.readBytes().decodeToString()
-            )
-        } catch (e: SerializationException) {
-            e.printStackTrace()
-            defaultValue
-        }
+        // TODO:
+        return User()
     }
 
     override suspend fun writeTo(t: User, output: OutputStream) {
-        output.write(
-            Json.encodeToString(
-                serializer = User.serializer(),
-                value = t
-            ).encodeToByteArray()
-        )
+        // TODO:
     }
 }

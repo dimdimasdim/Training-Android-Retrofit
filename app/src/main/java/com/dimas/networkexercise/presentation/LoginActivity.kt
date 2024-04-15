@@ -24,46 +24,16 @@ import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
 
-    private var loginViewModel: LoginViewModel? = null
-
     private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        initiate()
-        observer()
 
         binding.btnLogin.setOnClickListener {
             val username = binding.edtUsername.text.toString().trim()
             val password = binding.edtPassword.text.toString().trim()
-            loginViewModel?.postLogin(username, password)
-        }
-    }
-
-    private fun initiate() {
-        loginViewModel =
-            ViewModelProvider(this, AppModule.loginViewModelFactory)[LoginViewModel::class.java]
-    }
-
-    private fun observer() {
-        loginViewModel?.login?.observeIn(this) {
-            when (it) {
-                is Success -> storeToken(it.data)
-                is Error -> Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
-                is Loading -> showLoader(it.isLoading)
-                is Initiate -> {}
-            }
-        }
-    }
-
-    private fun storeToken(data: User) {
-        lifecycleScope.launch {
-            DataStoreUtils.get().updateData {
-                data
-            }
-            moveToMain()
         }
     }
 

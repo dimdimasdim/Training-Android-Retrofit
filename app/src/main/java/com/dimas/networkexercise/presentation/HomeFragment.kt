@@ -23,8 +23,6 @@ import com.dimas.networkexercise.utils.observeIn
 
 class HomeFragment : Fragment() {
 
-    private val homeViewModel by viewModels<HomeViewModel> { AppModule.homeViewModelFactory }
-
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding
 
@@ -62,23 +60,8 @@ class HomeFragment : Fragment() {
                     swpHome.isRefreshing = false
                 }
             }
-
-            observer(view.context)
-
-            getListMovie()
         }
 
-    }
-
-    private fun observer(context: Context) {
-        homeViewModel.movie.observeIn(this) {
-            when(it) {
-                is Success -> showListMovie(it.data)
-                is Error -> Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
-                is Loading -> showLoader(it.isLoading)
-                is Initiate -> {}
-            }
-        }
     }
 
     private fun showLoader(isLoading: Boolean) {
@@ -90,10 +73,6 @@ class HomeFragment : Fragment() {
 
     private fun showListMovie(data: List<Movie>) {
         adapter?.addAll(data)
-    }
-
-    private fun getListMovie() {
-       homeViewModel.getMovie()
     }
 
 

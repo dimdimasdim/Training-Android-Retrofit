@@ -34,12 +34,13 @@ class MovieAdapter(
     inner class MovieViewHolder(private val binding: ItemMovieBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: Movie) {
-            with(binding) {
-                Glide.with(context).load(data.image).into(imageMovie)
-                textTitle.text = data.title
-                textDesc.text = data.desc
-                textDate.text = data.releaseDate
-            }
+            // TODO: Uncomment
+//            with(binding) {
+//                Glide.with(context).load(data.image).into(imageMovie)
+//                textTitle.text = data.title
+//                textDesc.text = data.desc
+//                textDate.text = data.releaseDate
+//            }
         }
 
     }

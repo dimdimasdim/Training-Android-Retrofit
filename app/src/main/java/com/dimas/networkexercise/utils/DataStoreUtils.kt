@@ -1,6 +1,5 @@
 package com.dimas.networkexercise.utils
 
-import android.content.Context
 import androidx.datastore.core.DataStore
 import com.dimas.networkexercise.domain.model.User
 
