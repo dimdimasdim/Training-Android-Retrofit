@@ -8,13 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dimas.networkexercise.base.AppModule
 import com.dimas.networkexercise.presentation.adapter.MovieAdapter
 import com.dimas.networkexercise.databinding.FragmentHomeBinding
 import com.dimas.networkexercise.domain.model.Movie
-import com.dimas.networkexercise.domain.model.Transaction
 import com.dimas.networkexercise.presentation.viewmodel.HomeViewModel
 import com.dimas.networkexercise.utils.Error
 import com.dimas.networkexercise.utils.Initiate
@@ -72,7 +70,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun observer(context: Context) {
-        homeViewModel.movie?.observeIn(this) {
+        homeViewModel.movie.observeIn(this) {
             when(it) {
                 is Success -> showListMovie(it.data)
                 is Error -> Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()

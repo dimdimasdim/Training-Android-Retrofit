@@ -1,21 +1,17 @@
 package com.dimas.networkexercise.presentation.viewmodel
 
-import android.content.Context
-import androidx.datastore.dataStore
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dimas.networkexercise.data.request.LoginRequest
 import com.dimas.networkexercise.data.response.BaseError
 import com.dimas.networkexercise.domain.LoginRepository
 import com.dimas.networkexercise.domain.model.User
-import com.dimas.networkexercise.helper.CryptoManagerImpl
 import com.dimas.networkexercise.utils.Error
 import com.dimas.networkexercise.utils.Initiate
 import com.dimas.networkexercise.utils.Loading
 import com.dimas.networkexercise.utils.NetworkState
 import com.dimas.networkexercise.utils.Success
 import com.dimas.networkexercise.utils.UIState
-import com.dimas.networkexercise.utils.UserSettingsSerializer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.MutableStateFlow

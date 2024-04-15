@@ -6,9 +6,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.dimas.networkexercise.databinding.ItemTransactionBinding
+import com.dimas.networkexercise.databinding.ItemMovieBinding
 import com.dimas.networkexercise.domain.model.Movie
-import com.dimas.networkexercise.domain.model.Transaction
 
 class MovieAdapter(
     private val context: Context,
@@ -16,7 +15,7 @@ class MovieAdapter(
 ): RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val binding = ItemTransactionBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MovieViewHolder(binding)
     }
 
@@ -32,7 +31,7 @@ class MovieAdapter(
         notifyDataSetChanged()
     }
 
-    inner class MovieViewHolder(private val binding: ItemTransactionBinding): RecyclerView.ViewHolder(binding.root) {
+    inner class MovieViewHolder(private val binding: ItemMovieBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(data: Movie) {
             with(binding) {

@@ -34,7 +34,7 @@
         android:text="@string/message_login"/>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edtEmail"
+        android:id="@+id/tfUsername"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintTop_toBottomOf="@id/labelMsgLogin"
         app:layout_constraintStart_toStartOf="parent"
@@ -42,9 +42,10 @@
         android:layout_marginTop="@dimen/dimen_26dp"
         android:layout_width="@dimen/dimen_0dp"
         android:layout_height="wrap_content"
-        android:hint="@string/label_phone_number">
+        android:hint="@string/label_username">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
@@ -53,9 +54,9 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edtPassword"
+        android:id="@+id/tfPassword"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:layout_constraintTop_toBottomOf="@id/edtEmail"
+        app:layout_constraintTop_toBottomOf="@id/tfUsername"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="@dimen/dimen_16dp"
@@ -66,6 +67,7 @@
         android:hint="@string/label_password">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
@@ -81,7 +83,7 @@
         android:textColor="@color/color_primary"
         android:layout_marginTop="@dimen/dimen_12dp"
         android:background="?selectableItemBackground"
-        app:layout_constraintTop_toBottomOf="@+id/edtPassword"
+        app:layout_constraintTop_toBottomOf="@+id/tfPassword"
         app:layout_constraintEnd_toEndOf="parent"
         android:padding="@dimen/dimen_4dp"/>
 
@@ -89,8 +91,8 @@
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnLogin"
         app:layout_constraintTop_toBottomOf="@id/textForgotPassword"
-        app:layout_constraintStart_toStartOf="@id/edtPassword"
-        app:layout_constraintEnd_toEndOf="@id/edtPassword"
+        app:layout_constraintStart_toStartOf="@id/tfPassword"
+        app:layout_constraintEnd_toEndOf="@id/tfPassword"
         android:textColor="@color/color_secondary"
         style="@style/Widget.MaterialComponents.Button"
         app:cornerRadius="@dimen/dimen_8dp"
@@ -106,8 +108,8 @@
         android:id="@+id/pbLogin"
         android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@id/textForgotPassword"
-        app:layout_constraintStart_toStartOf="@id/edtPassword"
-        app:layout_constraintEnd_toEndOf="@id/edtPassword"
+        app:layout_constraintStart_toStartOf="@id/tfPassword"
+        app:layout_constraintEnd_toEndOf="@id/tfPassword"
         android:layout_marginTop="@dimen/dimen_16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>

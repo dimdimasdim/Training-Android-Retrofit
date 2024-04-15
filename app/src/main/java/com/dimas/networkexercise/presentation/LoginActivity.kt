@@ -36,17 +36,20 @@ class LoginActivity : AppCompatActivity() {
         observer()
 
         binding.btnLogin.setOnClickListener {
-            loginViewModel?.postLogin("ABC3", securePassword("ZMX87XC9"))
+            val username = binding.edtUsername.text.toString().trim()
+            val password = binding.edtPassword.text.toString().trim()
+            loginViewModel?.postLogin(username, password)
         }
     }
 
     private fun initiate() {
-        loginViewModel = ViewModelProvider(this, AppModule.loginViewModelFactory)[LoginViewModel::class.java]
+        loginViewModel =
+            ViewModelProvider(this, AppModule.loginViewModelFactory)[LoginViewModel::class.java]
     }
 
     private fun observer() {
         loginViewModel?.login?.observeIn(this) {
-            when(it) {
+            when (it) {
                 is Success -> storeToken(it.data)
                 is Error -> Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                 is Loading -> showLoader(it.isLoading)
@@ -67,6 +70,7 @@ class LoginActivity : AppCompatActivity() {
     private fun moveToMain() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+        finish()
     }
 
     private fun showLoader(isLoading: Boolean) {
@@ -76,8 +80,5 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun securePassword(string: String): String {
-        val data: ByteArray = string.toByteArray()
-        return Base64.encodeToString(data, Base64.DEFAULT).trim()
-    }
+
 }

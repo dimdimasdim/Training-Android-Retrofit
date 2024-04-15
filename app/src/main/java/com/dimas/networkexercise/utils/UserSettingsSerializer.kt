@@ -10,11 +10,7 @@ import kotlinx.serialization.json.Json
 
 
 class UserSettingsSerializer() : Serializer<User> {
-
-
-    override val defaultValue: User
-        get() = User()
-
+    override val defaultValue: User get() = User()
 
     override suspend fun readFrom(input: InputStream): User {
         return try {
