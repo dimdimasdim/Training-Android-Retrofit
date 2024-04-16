@@ -43,4 +43,12 @@ class MovieAdapter(
         }
 
     }
+
+    fun items(): MutableList<Movie> = items
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun clear() {
+        items.clear()
+        notifyDataSetChanged()
+    }
 }

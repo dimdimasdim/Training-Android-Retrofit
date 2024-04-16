@@ -24,11 +24,11 @@ class HomeViewModel(private val repository: MovieRepository): ViewModel() {
     private val _movie = MutableStateFlow<UIState<List<Movie>>>(Initiate())
     val movie: StateFlow<UIState<List<Movie>>> = _movie
 
-    fun getMovie() {
+    fun getMovie(page: Int = 1) {
         viewModelScope.launch(Dispatchers.Main) {
             _movie.value = Loading(true)
             val process = async(Dispatchers.IO) {
-                repository.getMovies(1)
+                repository.getMovies(page)
             }
             when(val state = process.await()) {
                 is NetworkState.Success -> {

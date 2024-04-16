@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.dimas.networkexercise.base.AppModule
 import com.dimas.networkexercise.presentation.adapter.MovieAdapter
 import com.dimas.networkexercise.databinding.FragmentHomeBinding
@@ -29,6 +30,24 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding
 
     private var adapter: MovieAdapter? = null
+
+    private var page = 1
+    private var nextPage = 1
+
+    private val scrollListener = object: RecyclerView.OnScrollListener () {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+            val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+            if (adapter == null) return
+            val totalItemCount = adapter?.itemCount ?: 0
+            val lastVisibleItem = layoutManager.findLastCompletelyVisibleItemPosition()
+            val lastIndex = adapter?.items()?.lastIndex ?: 0
+            if (totalItemCount <= 0) return
+            if (lastVisibleItem != lastIndex) return
+            if (page >= nextPage) return
+            loadItems()
+        }
+    }
 
     companion object {
         @JvmStatic
@@ -60,14 +79,31 @@ class HomeFragment : Fragment() {
 
                 swpHome.setOnRefreshListener {
                     swpHome.isRefreshing = false
+                    reset()
                 }
             }
 
             observer(view.context)
 
             getListMovie()
+
+            initListener()
         }
 
+    }
+
+    private fun reset() {
+        page = 1
+        nextPage = 1
+        adapter?.clear()
+        getListMovie()
+    }
+
+    private fun initListener() {
+        binding?.listMovie?.apply {
+            removeOnScrollListener(scrollListener)
+            addOnScrollListener(scrollListener)
+        }
     }
 
     private fun observer(context: Context) {
@@ -84,16 +120,22 @@ class HomeFragment : Fragment() {
     private fun showLoader(isLoading: Boolean) {
         binding?.apply {
             pbHome.isVisible = isLoading
-            listMovie.isVisible = !isLoading
+            if (page == 1) listMovie.isVisible = !isLoading
         }
     }
 
     private fun showListMovie(data: List<Movie>) {
         adapter?.addAll(data)
+        nextPage = page.plus(1)
     }
 
     private fun getListMovie() {
        homeViewModel.getMovie()
+    }
+
+    private fun loadItems() {
+        page += 1
+        homeViewModel.getMovie(page)
     }
 
 
