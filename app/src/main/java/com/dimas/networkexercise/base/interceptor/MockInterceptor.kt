@@ -29,7 +29,7 @@ class MockInterceptor : Interceptor {
     }
 
     private fun getSuccessLogin(): String {
-        return "{\"data\":{\"role\":{\"roleName\":\"superuser\"},\"menu\":[{\"menuName\":\"Funder Statement\"},{\"menuName\":\"Blacklist Funder\"}],\"token\":\"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiOTk4ZjcyM2UxMWZlNTA5ZGZjNGJjYzJmZDE2ZGE2MSIsInN1YiI6IjU4ZDA5Zjk1YzNhMzY4MzhhZjAwMWY5NyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.DUcrVTi-Ml70qXhfL5odSMJlSRA1m_qs7OcdvaOIQN4\"},\"success\": true,\"message\":\"Success!\",\"status\": 200,\"timestamp\": 1712297756047}"
+        return "{\"data\":{\"role\":{\"roleName\":\"superuser\"},\"menu\":[{\"menuName\":\"Funder Statement\"},{\"menuName\":\"Blacklist Funder\"}],\"token\":\"[TOKEN Movie]\"},\"success\": true,\"message\":\"Success!\",\"status\": 200,\"timestamp\": 1712297756047}"
     }
 
     private fun failedLogin(): String {
