@@ -54,6 +54,7 @@ class LoginActivity : AppCompatActivity() {
                 is Error -> Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                 is Loading -> showLoader(it.isLoading)
                 is Initiate -> {}
+                else -> {}
             }
         }
     }

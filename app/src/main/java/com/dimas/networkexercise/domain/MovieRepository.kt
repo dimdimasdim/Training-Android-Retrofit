@@ -17,7 +17,11 @@ class MovieRepository(private val service: NetworkService) {
                 if (body != null) {
                     body.data?.mapToMovie()?.let {
                         NetworkState.Success(it)
-                    } ?: run { NetworkState.Error(error = BaseError(error = "Null Response"))  }
+                    } ?:
+                    run {
+                        NetworkState
+                            .Error(error = BaseError(error = "Null Response"))
+                    }
                 } else {
                     parseError(response)
                 }

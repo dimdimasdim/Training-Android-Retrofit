@@ -27,7 +27,9 @@ object AppModule {
         addInterceptor(MockInterceptor())
         addInterceptor(ChuckerInterceptor(ApplicationProviderUtils.get()))
         addInterceptor(HeaderInterceptor(DataStoreUtils.get()))
-        addInterceptor(HttpLoggingInterceptor { message -> Log.d("Http log", message) })
+        addInterceptor(HttpLoggingInterceptor {
+            message -> Log.d("Http log", message)
+        })
     }.build()
 
     private fun provideRetrofit(): Retrofit {

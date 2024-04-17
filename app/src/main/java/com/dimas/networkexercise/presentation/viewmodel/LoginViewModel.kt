@@ -38,7 +38,8 @@ class LoginViewModel(
                 }
                 is NetworkState.Error ->{
                     _login.value = Loading(false)
-                    _login.value = Error((state.error as BaseError).error)
+                    _login.value =
+                        Error((state.error as BaseError).error)
                 }
             }
         }

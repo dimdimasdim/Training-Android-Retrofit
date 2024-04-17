@@ -16,9 +16,9 @@ class LoginRepository (private val service: NetworkService) {
             if (response.isSuccessful) {
                 val body = response.body()
                 if (body != null) {
-                    body.data?.mapToUser()?.let {
-                        NetworkState.Success(it)
-                    } ?: run { NetworkState.Error(error = BaseError(error = "Null Response")) }
+                    body.data?.mapToUser()?.let { user ->
+                        NetworkState.Success(user)
+                    } ?: run { NetworkState.Error(error = BaseError(error = "User Null Response")) }
                 } else {
                     parseError(response)
                 }

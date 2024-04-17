@@ -24,6 +24,8 @@ class HeaderInterceptor(
     private fun mapHeaders(chain: Interceptor.Chain): Request {
         val original = chain.request()
 
+        val isGuest = original.headers["is_guest"] == "true"
+
         val getToken = runBlocking {
             dataStore.data.firstOrNull()?.token
         }
@@ -31,7 +33,9 @@ class HeaderInterceptor(
         val requestBuilder = original.newBuilder()
 
 
-        if (!getToken.isNullOrEmpty()) setTokenHeader(requestBuilder, getToken)
+        if (!getToken.isNullOrEmpty() && !isGuest) {
+            setTokenHeader(requestBuilder, getToken)
+        }
 
         return requestBuilder.build()
     }
